@@ -27,6 +27,7 @@ class CreateUserRequest extends FormRequest
             'name' => ['required','string'],
             'username' => ['required','string'],
             'password' => ['required','string'],
+            'role' => ['required']
         ];
     }
 
@@ -35,6 +36,7 @@ class CreateUserRequest extends FormRequest
         return[
             'name.required' => 'name is required',
             'password.required' => 'pass is required',
+            'role.required' => 'name role is required'
         ];
     }
 }

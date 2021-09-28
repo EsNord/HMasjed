@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\LoginRequest;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,18 +53,37 @@ class UserController extends Controller
         ];
     }
 
+    public static function setRoles($nameRoles){
+        $roles = Role::orderBy('index')->get();
+
+        $binRoles = "";
+
+        foreach ($roles as $role){
+            if (in_array($role->name,$nameRoles)){
+                $binRoles = "1" . $binRoles;
+            }else{
+                $binRoles = "0" . $binRoles;
+            }
+        }
+        return $binRoles;
+    }
+
     public function createUser(CreateUserRequest $request){
+        $roles = $this->setRoles([$request['role']]);
+        $permissions = Role::where('name',$request['role'])->first()->permissions;
+
         $user = User::create([
             'name' => $request['name'],
             'username' => $request['username'],
             'password' => Hash::make($request['password']),
-            'roles' => '0000',
-            'permissions' => '000',
+            'roles' => $roles,
+            'permissions' => $permissions,
             'api_token' => Str::random(80),
         ]);
 
         return [
-            $user,
+            'status' => 200,
+            'data' => $user,
         ];
     }
     /**
