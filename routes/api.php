@@ -19,10 +19,8 @@ use \App\Http\Controllers\PermissionController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::middleware(['auth:api','role:admin'])->group(function (){
-    Route::middleware(['auth:admin'])->group(function(){
-
-    });
+Route::middleware(['auth:api'])->group(function (){
+    
     Route::post('/create_user',[UserController::class,'create_user'])->middleware(['permission:create_user']);
     Route::get('/permissions',[PermissionController::class,'all']);
     Route::get('/get_user',[UserController::class,'get_user']);
