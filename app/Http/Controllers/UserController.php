@@ -24,7 +24,9 @@ class UserController extends Controller
     }
     
     public function test(){
-        return User::all();
+
+        return [User::all()];
+    
     }
 
     public function get_user(){
