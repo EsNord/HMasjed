@@ -29,6 +29,10 @@ class UserController extends Controller
     
     }
 
+    public function get_users(){
+        return ["asda" => "asda"];
+    }
+
     public function get_user(){
         $user = Auth::user();
         if ($user){

@@ -29,4 +29,4 @@ Route::middleware(['auth:api'])->group(function (){
 
 Route::post('/create_user',[UserController::class,'createUser'])->middleware('auth:api');
 Route::post('/login',[UserController::class,'login']);
-Route::get('/test',[UserController::class,'test']);
+Route::get('/get_users',[UserController::class,'get_users']);
