@@ -25,7 +25,7 @@ class UserController extends Controller
     
     public function test(){
 
-        return [User::all()];
+        return ["sadsd"];
     
     }
 
