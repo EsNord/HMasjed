@@ -23,7 +23,7 @@ class UserController extends Controller
         //
     }
     public function test(){
-        return ["status" => 200];
+        return User::all();
     }
     public function get_user(){
         $user = Auth::user();
@@ -50,6 +50,7 @@ class UserController extends Controller
                 'data' => ['user' => $user,'token' => $token]
             ];
         }
+
         return ['status' => 200,
             'data' => false,
         ];
