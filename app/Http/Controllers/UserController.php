@@ -22,9 +22,11 @@ class UserController extends Controller
     {
         //
     }
+    
     public function test(){
         return User::all();
     }
+
     public function get_user(){
         $user = Auth::user();
         if ($user){
